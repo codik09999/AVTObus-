@@ -1,0 +1,32 @@
+services:
+  backend:
+    source:
+      type: github
+      repo: codik09999/AVTObus-
+      path: backend
+    build:
+      command: npm install
+    start:
+      command: npm start
+    variables:
+      PORT: 3001
+      TELEGRAM_TOKEN: "7808830885:AAHFkGTaOylnQ99RrNolU5UgjEgo2gxFrqo"
+      TELEGRAM_CHAT_ID: "2063086506"
+    healthcheck:
+      path: /
+      port: 3001
+
+  frontend:
+    source:
+      type: github
+      repo: codik09999/AVTObus-
+      path: frontend
+    build:
+      command: npm run build
+    start:
+      command: npx serve -s build
+    variables:
+      REACT_APP_API_URL: "${BACKEND_URL}"
+    healthcheck:
+      path: /
+      port: 3000
