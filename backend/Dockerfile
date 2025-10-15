@@ -1,0 +1,22 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Копируем package.json и устанавливаем зависимости
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Копируем исходный код
+COPY . .
+
+# Создаем пользователя для безопасности
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+# Меняем владельца файлов
+RUN chown -R nextjs:nodejs /app
+USER nextjs
+
+EXPOSE 3001
+
+CMD ["npm", "start"]
