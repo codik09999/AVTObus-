@@ -1,0 +1,14 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "npm start"
+
+[[services]]
+name = "backend"
+source = "."
+
+[services.variables]
+PORT = "3001"
+TELEGRAM_TOKEN = "7808830885:AAHFkGTaOylnQ99RrNolU5UgjEgo2gxFrqo"
+TELEGRAM_CHAT_ID = "2063086506"

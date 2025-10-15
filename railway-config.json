@@ -1,0 +1,38 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "source": {
+        "type": "github",
+        "path": "backend"
+      },
+      "build": {
+        "command": "npm install"
+      },
+      "start": {
+        "command": "npm start"
+      },
+      "variables": {
+        "PORT": "3001",
+        "TELEGRAM_TOKEN": "7808830885:AAHFkGTaOylnQ99RrNolU5UgjEgo2gxFrqo",
+        "TELEGRAM_CHAT_ID": "2063086506"
+      }
+    },
+    {
+      "name": "frontend", 
+      "source": {
+        "type": "github",
+        "path": "frontend"
+      },
+      "build": {
+        "command": "npm run build"
+      },
+      "start": {
+        "command": "npx serve -s build"
+      },
+      "variables": {
+        "REACT_APP_API_URL": "https://backend-production.railway.app"
+      }
+    }
+  ]
+}
